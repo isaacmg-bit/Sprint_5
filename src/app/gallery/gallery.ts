@@ -10,7 +10,7 @@ import { Image } from '../image';
   styleUrl: './gallery.css',
 })
 export class Gallery {
-  images = signal<Image[]>([]);
+  images = signal<Image[]>([]); // Signal containing an empty array of images. <Image[]> is the type, ([]) is the empty array.
 
   ngOnInit() {
     this.handleImages();
@@ -27,8 +27,5 @@ export class Gallery {
     }
 
     this.images.set(imageList);
-  }
-  trackByImageId(index: number, image: Image): number {
-    return image.id;
   }
 }
