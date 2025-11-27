@@ -10,7 +10,7 @@ import { Image } from '../image';
   styleUrl: './gallery.css',
 })
 export class Gallery {
-  images = signal<Image[]>([]); // Signal containing an empty array of images. <Image[]> is the type, ([]) is the empty array.
+  images = signal<Image[]>([]);
 
   ngOnInit() {
     this.handleImages();
@@ -19,11 +19,15 @@ export class Gallery {
   handleImages() {
     const imageList: Image[] = [];
 
-    for (let i = 0; i < 35; i++) {
+    for (let i = 0; i < 32; i++) {
       imageList.push({
         id: i,
         url: `https://picsum.photos/300/200?random=${Date.now()}-${i}`,
+        featured: i === 0,
       });
+      if (imageList[i].featured) {
+        imageList[i].url = `https://picsum.photos/650/450?random=${Date.now()}-${i}`;
+      }
     }
 
     this.images.set(imageList);

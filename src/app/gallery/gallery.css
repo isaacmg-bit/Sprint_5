@@ -1,4 +1,3 @@
-/* Contenedor principal */
 .gallery-container {
   width: 100%;
   padding: 20px;
@@ -7,34 +6,10 @@
   box-sizing: border-box;
 }
 
-/* Grid responsive */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 18px;
   width: 100%;
   max-width: 1300px;
-}
-
-/* Estilos dentro del componente <app-image-item> */
-app-image-item {
-  display: block;
-  overflow: hidden;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-app-image-item:hover {
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.15);
-}
-
-/* Asegura que las imágenes dentro ajusten bien */
-app-image-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }
