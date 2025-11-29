@@ -24,6 +24,7 @@ export class Gallery {
         id: i,
         url: `https://picsum.photos/300/200?random=${Date.now()}-${i}`,
         featured: i === 0,
+        alt: i === 0 ? 'Featured gallery image' : `Gallery image ${i + 1}`,
       });
       if (imageList[i].featured) {
         imageList[i].url = `https://picsum.photos/650/450?random=${Date.now()}-${i}`;

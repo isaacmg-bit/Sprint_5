@@ -1,7 +1,9 @@
-<div class="gallery-container">
-  <div class="gallery-grid">
-    @for (img of images(); track img.id; let i = $index) {
-    <app-image-item [image]="img" [featured]="i === 0"></app-image-item>
+<div class="gallery-container w-full px-5 py-5 flex justify-center box-border">
+  <div
+    class="gallery-grid grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-[18px] w-full max-w-[1300px]"
+  >
+    @for (img of images(); track img.id;) {
+    <app-image-item [image]="img" [featured]="img.featured"></app-image-item>
     }
   </div>
 </div>

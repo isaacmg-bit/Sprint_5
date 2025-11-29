@@ -9,8 +9,10 @@ import { Image } from '../image';
   styleUrl: './image-item.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class.featured-image]': 'featured()'
-  }
+    '[class.featured-image]': 'featured()',
+    '[class.col-span-2]': 'featured()',
+    '[class.row-span-2]': 'featured()',
+  },
 })
 export class ImageItem {
   image = input.required<Image>();

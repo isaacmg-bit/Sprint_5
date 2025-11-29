@@ -1,3 +1,9 @@
-<div class="image-item">
-  <img [src]="image().url" />
+<div
+  [class]="
+    featured()
+      ? 'image-item block overflow-hidden rounded-xl cursor-pointer transition-[transform,box-shadow] duration-250 ease-[ease] shadow-[0_4px_12px_rgba(0,0,0,0.08)] md:hover:origin-top-left md:hover:scale-[2.05] md:hover:shadow-[0_10px_22px_rgba(0,0,0,0.15)] hover:border-4 hover:border-inset hover:border-gray-500 hover:rounded-lg'
+      : 'image-item block overflow-hidden rounded-xl cursor-pointer transition-[transform,box-shadow] duration-250 ease-[ease] shadow-[0_4px_12px_rgba(0,0,0,0.08)] md:hover:-translate-y-1 md:hover:scale-[1.03] md:hover:shadow-[0_10px_22px_rgba(0,0,0,0.15)] hover:border-4 hover:border-inset hover:border-gray-500 hover:rounded-lg'
+  "
+>
+  <img [src]="image().url" [alt]="image().alt" class="w-full h-full object-cover block" />
 </div>
