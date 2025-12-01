@@ -1,4 +1,4 @@
-import { Component, input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Image } from '../image';
 
@@ -17,4 +17,10 @@ import { Image } from '../image';
 export class ImageItem {
   image = input.required<Image>();
   featured = input.required<boolean>();
+
+  imageClick = output<Image>();
+
+  onKeyPress() {
+    this.imageClick.emit(this.image());
+  }
 }

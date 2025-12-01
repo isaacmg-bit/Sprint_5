@@ -7,12 +7,14 @@ const mockImageTrue: Image = {
   id: 0,
   url: 'mock-url-test-true.jpg',
   featured: true,
+  alt: 'Gallery image'
 };
 
 const mockImageFalse: Image = {
   id: 31,
   url: 'mock-url-test-false.jpg',
   featured: false,
+   alt: 'Gallery image'
 };
 
 @Component({

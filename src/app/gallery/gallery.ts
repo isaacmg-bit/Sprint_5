@@ -33,4 +33,8 @@ export class Gallery {
 
     this.images.set(imageList);
   }
+
+  onImageClick(image: Image) {
+    console.log('Selected image:', image);
+  }
 }

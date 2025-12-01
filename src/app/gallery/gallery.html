@@ -3,7 +3,11 @@
     class="gallery-grid grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-[18px] w-full max-w-[1300px]"
   >
     @for (img of images(); track img.id;) {
-    <app-image-item [image]="img" [featured]="img.featured"></app-image-item>
+    <app-image-item
+      [image]="img"
+      [featured]="img.featured"
+      (imageClick)="onImageClick($event)"
+    ></app-image-item>
     }
   </div>
 </div>
