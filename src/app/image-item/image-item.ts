@@ -1,10 +1,11 @@
 import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Image } from '../image';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-image-item',
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonModule],
   templateUrl: './image-item.html',
   styleUrl: './image-item.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,5 +23,11 @@ export class ImageItem {
 
   onKeyPress() {
     this.imageClick.emit(this.image());
+  }
+
+  imageDelete = output<Image>();
+
+  onClickTrash() {
+    this.imageDelete.emit(this.image());
   }
 }

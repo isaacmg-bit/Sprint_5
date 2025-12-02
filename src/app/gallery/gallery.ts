@@ -37,4 +37,21 @@ export class Gallery {
   onImageClick(image: Image) {
     console.log('Selected image:', image);
   }
+
+  onTrashClick(image: Image) {
+    this.images.update((images) => {
+      const filtered = images.filter((img) => img.id !== image.id);
+
+      if (filtered.length === 0) {
+        return filtered;
+      } else {
+        filtered[0].featured = true;
+        filtered[0].url = filtered[0].url.replace('300/200', '650/450');
+        return filtered;
+      }
+    });
+    if (this.images().length === 0) {
+      this.handleImages();
+    }
+  }
 }
