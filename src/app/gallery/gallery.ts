@@ -22,13 +22,10 @@ export class Gallery {
     for (let i = 0; i < 32; i++) {
       imageList.push({
         id: i,
-        url: `https://picsum.photos/300/200?random=${Date.now()}-${i}`,
+        url: `https://picsum.photos/650/450?random=${Date.now()}-${i}`,
         featured: i === 0,
         alt: i === 0 ? 'Featured gallery image' : `Gallery image ${i + 1}`,
       });
-      if (imageList[i].featured) {
-        imageList[i].url = `https://picsum.photos/650/450?random=${Date.now()}-${i}`;
-      }
     }
 
     this.images.set(imageList);
@@ -39,6 +36,8 @@ export class Gallery {
   }
 
   onTrashClick(image: Image) {
+    if(confirm("Are you sure you want to delete this image?"))
+
     this.images.update((images) => {
       const filtered = images.filter((img) => img.id !== image.id);
 
@@ -46,7 +45,6 @@ export class Gallery {
         return filtered;
       } else {
         filtered[0].featured = true;
-        filtered[0].url = filtered[0].url.replace('300/200', '650/450');
         return filtered;
       }
     });
