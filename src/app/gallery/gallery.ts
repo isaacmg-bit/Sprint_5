@@ -10,6 +10,8 @@ import { Image } from '../image';
   styleUrl: './gallery.css',
 })
 export class Gallery {
+  private readonly DEFAULT_GALLERY_SIZE = 32;
+
   images = signal<Image[]>([]);
 
   ngOnInit() {
@@ -19,7 +21,7 @@ export class Gallery {
   handleImages(): void {
     const imageList: Image[] = [];
 
-    for (let i = 0; i < 32; i++) {
+    for (let i = 0; i < this.DEFAULT_GALLERY_SIZE; i++) {
       imageList.push({
         id: i,
         url: `https://picsum.photos/1920/1080?random=${Date.now()}-${i}`,
@@ -35,22 +37,38 @@ export class Gallery {
     console.log('Selected image:', image);
   }
 
-  onTrashClick(image: Image): void {
-    if (confirm('Are you sure you want to delete this image?'))
-      this.images.update((images) => {
-        const filtered = images.filter((img) => img.id !== image.id);
+  async onTrashClick(image: Image) {
+    if (!confirm('Are you sure you want to delete this image?')) return;
 
-        if (filtered.length === 0) {
-          return filtered;
-        } else {
-          filtered[0].featured = true;
-          filtered[0].alt = 'Featured gallery image';
-          for (let index = 1; index < filtered.length; index++) {
-            filtered[index].alt = `Gallery image ${index + 1}` ;
-          }
-          return filtered;
-        }
+    try {
+      this.images.update((images) => {
+        return images.filter((img) => img.id !== image.id);
       });
+
+      await this.updateAlts();
+      await this.checkAndResetGallery();
+    } catch (error) {
+      console.error('Error deleting image:', error);
+    }
+  }
+
+  async updateAlts() {
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    this.images.update((images) => {
+      if (images.length === 0) return images;
+
+      return images.map((img, index) => ({
+        ...img,
+        featured: index === 0,
+        alt: index === 0 ? 'Featured gallery image' : `Gallery image ${index + 1}`,
+      }));
+    });
+  }
+
+  async checkAndResetGallery() {
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
     if (this.images().length === 0) {
       this.handleImages();
     }
