@@ -22,7 +22,7 @@ export class Gallery {
     for (let i = 0; i < 32; i++) {
       imageList.push({
         id: i,
-        url: `https://picsum.photos/650/450?random=${Date.now()}-${i}`,
+        url: `https://picsum.photos/1920/1080?random=${Date.now()}-${i}`,
         featured: i === 0,
         alt: i === 0 ? 'Featured gallery image' : `Gallery image ${i + 1}`,
       });
@@ -36,18 +36,21 @@ export class Gallery {
   }
 
   onTrashClick(image: Image) {
-    if(confirm("Are you sure you want to delete this image?"))
+    if (confirm('Are you sure you want to delete this image?'))
+      this.images.update((images) => {
+        const filtered = images.filter((img) => img.id !== image.id);
 
-    this.images.update((images) => {
-      const filtered = images.filter((img) => img.id !== image.id);
-
-      if (filtered.length === 0) {
-        return filtered;
-      } else {
-        filtered[0].featured = true;
-        return filtered;
-      }
-    });
+        if (filtered.length === 0) {
+          return filtered;
+        } else {
+          filtered[0].featured = true;
+          filtered[0].alt = 'Featured gallery image';
+          for (let index = 1; index < filtered.length; index++) {
+            filtered[index].alt = `Gallery image ${index + 1}` ;
+          }
+          return filtered;
+        }
+      });
     if (this.images().length === 0) {
       this.handleImages();
     }
