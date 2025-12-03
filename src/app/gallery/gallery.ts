@@ -38,6 +38,7 @@ export class Gallery {
   }
 
   async onTrashClick(image: Image) {
+    
     if (!confirm('Are you sure you want to delete this image?')) return;
 
     try {

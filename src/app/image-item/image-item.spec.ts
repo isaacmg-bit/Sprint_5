@@ -7,14 +7,14 @@ const mockImageTrue: Image = {
   id: 0,
   url: 'mock-url-test-true.jpg',
   featured: true,
-  alt: 'Gallery image'
+  alt: 'Gallery image',
 };
 
 const mockImageFalse: Image = {
   id: 31,
   url: 'mock-url-test-false.jpg',
   featured: false,
-   alt: 'Gallery image'
+  alt: 'Gallery image',
 };
 
 @Component({
@@ -61,6 +61,21 @@ describe('ImageItem true tests', () => {
     const imageElement: HTMLImageElement = fixture.nativeElement.querySelector('img');
 
     expect(imageElement.src).toContain(mockImageTrue.url);
+  });
+
+  it('delete button renders correctly', () => {
+    const deleteButton = fixture.nativeElement.querySelector('button');
+    expect(deleteButton).toBeTruthy();
+  });
+  
+  it('should emit imageDelete with correct image', () => {
+    const emitSpy = vi.spyOn(component.imageDelete, 'emit');
+    const mockEvent = { stopPropagation: vi.fn() } as any;
+
+    component.onClickTrash(mockEvent);
+
+    expect(mockEvent.stopPropagation).toHaveBeenCalled();
+    expect(emitSpy).toHaveBeenCalled();
   });
 
   it('should have the "featured-image" class when Input featured is true', () => {

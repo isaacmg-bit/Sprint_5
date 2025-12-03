@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Gallery } from './gallery';
+import { Image } from '../image';
 
 describe('Gallery', () => {
   let component: Gallery;
@@ -60,5 +61,47 @@ describe('Gallery', () => {
     const imageItems = fixture.nativeElement.querySelectorAll('app-image-item');
 
     expect(imageItems.length).toBe(32);
+  });
+  it('should delete image from the array', async () => {
+    vi.spyOn(component, 'handleImages').mockImplementation(() => {});
+
+    const mockImages: Image[] = [
+      { id: 1, url: 'test1.jpg', featured: true, alt: 'Featured gallery image' },
+      { id: 2, url: 'test2.jpg', featured: false, alt: 'Gallery image 2' },
+      { id: 3, url: 'test3.jpg', featured: false, alt: 'Gallery image 3' },
+    ];
+
+    component.images.set(mockImages);
+    vi.spyOn(window, 'confirm').mockReturnValue(true);
+
+    const imageToDelete = component.images()[0];
+
+    await component.onTrashClick(imageToDelete);
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    expect(component.images().length).toBe(2);
+    expect(component.images().find((img) => img.id === 1)).toBeUndefined();
+    expect(component.images()[0].featured).toBe(true);
+  });
+  it('should NOT delete image from the array if we do not confirm', async () => {
+    vi.spyOn(component, 'handleImages').mockImplementation(() => {});
+
+    const mockImages: Image[] = [
+      { id: 1, url: 'test1.jpg', featured: true, alt: 'Featured gallery image' },
+      { id: 2, url: 'test2.jpg', featured: false, alt: 'Gallery image 2' },
+      { id: 3, url: 'test3.jpg', featured: false, alt: 'Gallery image 3' },
+    ];
+
+    component.images.set(mockImages);
+    vi.spyOn(window, 'confirm').mockReturnValue(false);
+
+    const imageToDelete = component.images()[0];
+
+    await component.onTrashClick(imageToDelete);
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    expect(component.images().length).toBe(3);
   });
 });
