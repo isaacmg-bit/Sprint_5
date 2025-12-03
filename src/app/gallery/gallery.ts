@@ -16,7 +16,7 @@ export class Gallery {
     this.handleImages();
   }
 
-  handleImages() {
+  handleImages(): void {
     const imageList: Image[] = [];
 
     for (let i = 0; i < 32; i++) {
@@ -31,11 +31,11 @@ export class Gallery {
     this.images.set(imageList);
   }
 
-  onImageClick(image: Image) {
+  onImageClick(image: Image): void {
     console.log('Selected image:', image);
   }
 
-  onTrashClick(image: Image) {
+  onTrashClick(image: Image): void {
     if (confirm('Are you sure you want to delete this image?'))
       this.images.update((images) => {
         const filtered = images.filter((img) => img.id !== image.id);

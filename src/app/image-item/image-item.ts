@@ -21,13 +21,14 @@ export class ImageItem {
 
   imageClick = output<Image>();
 
-  onKeyPress() {
+  onKeyPress(): void {
     this.imageClick.emit(this.image());
   }
 
   imageDelete = output<Image>();
 
-  onClickTrash() {
+  onClickTrash(event: MouseEvent) {
+    event.stopPropagation();
     this.imageDelete.emit(this.image());
   }
 }
