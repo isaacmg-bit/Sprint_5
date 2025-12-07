@@ -19,10 +19,10 @@ export class ImageItem {
   image = input.required<Image>();
   featured = input.required<boolean>();
 
-  imageClick = output<Image>();
+  imageSelect = output<Image>();
 
   onKeyPress(): void {
-    this.imageClick.emit(this.image());
+    this.imageSelect.emit(this.image());
   }
 
   imageDelete = output<Image>();
