@@ -7,11 +7,12 @@
   class="group relative"
   [class]="
     featured()
-      ? 'z-10 image-item block overflow-hidden rounded-xl cursor-pointer border-4 border-transparent md:hover:origin-top-left md:hover:scale-[2.05] lg:hover:scale-[2.56] hover:border-4 hover:border-inset hover:border-gray-500 hover:rounded-lg'
+      ? 'z-10 image-item block overflow-hidden rounded-xl cursor-pointer border-4 border-transparent md:hover:origin-top-left hover:border-4 hover:border-inset hover:border-gray-500 hover:rounded-lg'
       : 'image-item block overflow-hidden rounded-xl cursor-pointer border-4 border-transparent hover:border-4 hover:border-inset hover:border-gray-500 hover:rounded-lg'
   "
 >
   <img [src]="image().url" [alt]="image().alt" class="w-full h-full object-cover block"/>
+  
   <button
     (click)="onClickTrash($event)"
     class="absolute top-2 right-2 p-1 rounded-xl bg-red-600 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 cursor-pointer"

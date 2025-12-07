@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { ImageItem } from '../image-item/image-item';
 import { Image } from '../image';
+import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-gallery',
-  imports: [CommonModule, ImageItem],
+  imports: [CommonModule, ImageItem, CdkDropList, CdkDrag],
   templateUrl: './gallery.html',
   styleUrl: './gallery.css',
 })
@@ -32,13 +33,18 @@ export class Gallery {
 
     this.images.set(imageList);
   }
-
+  
+  drop(event: CdkDragDrop<Image[]>) {
+    const updatedImages = [...this.images()];
+    moveItemInArray(updatedImages, event.previousIndex, event.currentIndex);
+    this.images.set(updatedImages);
+    this.updateAlts();
+  }
   onImageClick(image: Image): void {
     console.log('Selected image:', image);
   }
 
   async onTrashClick(image: Image) {
-    
     if (!confirm('Are you sure you want to delete this image?')) return;
 
     try {
