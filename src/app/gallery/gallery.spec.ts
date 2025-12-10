@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Gallery } from './gallery';
 import { Image } from '../image';
+import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 
 describe('Gallery', () => {
   let component: Gallery;
@@ -102,6 +103,35 @@ describe('Gallery', () => {
     await fixture.whenStable();
     fixture.detectChanges();
 
+    expect(component.images().length).toBe(3);
+  });
+
+  it('should reorder the array when the function drop is used', async () => {
+    const mockImages: Image[] = [
+      { id: 1, url: 'test1.jpg', featured: true, alt: 'Image 1' },
+      { id: 2, url: 'test2.jpg', featured: false, alt: 'Image 2' },
+      { id: 3, url: 'test3.jpg', featured: false, alt: 'Image 3' },
+    ];
+
+    component.images.set(mockImages);
+
+    const mockEvent = {
+      previousIndex: 0,
+      currentIndex: 2,
+      container: {} as any,
+      previousContainer: {} as any,
+      item: {} as any,
+      distance: { x: 0, y: 0 },
+      dropPoint: { x: 0, y: 0 },
+      isPointerOverContainer: true,
+      event: {} as any,
+    } as CdkDragDrop<Image[]>;
+
+    component.drop(mockEvent);
+
+    expect(component.images()[0].id).toBe(2);
+    expect(component.images()[1].id).toBe(3);
+    expect(component.images()[2].id).toBe(1);
     expect(component.images().length).toBe(3);
   });
 });
