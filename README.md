@@ -109,6 +109,7 @@ This project was my first glimpse into Angular. It's been a tough one, as I was 
 # Clone the repository
 git clone 
 https://github.com/isaacmg-bit/Sprint_5.git
+
 # Navigate to the project folder
 
 # Launch project
