@@ -12,7 +12,7 @@
 ![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=white)
 ![License: CC BY-NC](https://img.shields.io/badge/license-CC--BY--NC-orange)
 
-**Random image gallery, built with **Angular** and **Tailwind** , designed with a responsive approach.
+**Random image gallery, built with **Angular** and **Tailwind** , designed with a responsive approach.**
 
 ---
 
