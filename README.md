@@ -150,17 +150,17 @@ Open the localserver that has been created
 
 ## Screenshots
 
-![Desktop version](./assets/img/GalleryDrag.gif)
-![Desktop version](./assets/img/GalleryRefill.gif)
 ![Desktop version](./assets/img/GalleryHover.gif)
 ![Desktop version](./assets/img/GalleryDelete.gif)
+![Desktop version](./assets/img/GalleryDrag.gif)
+![Desktop version](./assets/img/GalleryRefill.gif)
 ![Desktop version](./assets/img/GalleryDesktop.png)
 ![Tablet version](./assets/img/GalleryTablet.png)
 ![Mobile version](./assets/img/GalleryMobile.png)
 
 ---
 
-## Images source
+## ImagesSource
 
 This project fetches pictures from **Picsum**,  a popular, free service that provides placeholder images for web development and design.
 
