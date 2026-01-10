@@ -35,7 +35,7 @@
 
 ## Background
 
-This project was my first glimpse into Angular. It's been a tough one, as I was still trying to cope with all the Typescript stuff from the previous one. I pulled through, but it's taken me longer than expected.
+This project was developed as a first glimpse into angular. It is a very simple gallery app, that has two components and uses CDK drag and drop library to move the images around.
 
 ---
 
