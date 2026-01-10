@@ -1,22 +1,21 @@
 <div
   tabindex="0"
-  role="button"
+  role="listitem"
+  aria-grabbed="false"
   (keydown.enter)="onKeyPress()"
   (keydown.space)="onKeyPress()"
   (click)="onKeyPress()"
-  class="group relative"
-  [class]="
-    featured()
-      ? 'z-10 image-item block overflow-hidden rounded-xl cursor-pointer border-4 border-transparent md:hover:origin-top-left hover:border-4 hover:border-inset hover:border-gray-500 hover:rounded-lg'
-      : 'image-item block overflow-hidden rounded-xl cursor-pointer border-4 border-transparent hover:border-4 hover:border-inset hover:border-gray-500 hover:rounded-lg'
-  "
+  class="group relative image-item block overflow-hidden rounded-xl cursor-pointer border-4 border-transparent hover:border-4 hover:border-inset hover:border-gray-500 hover:rounded-lg"
+  [class.z-10]="featured()"
+  [class.md:hover:origin-top-left]="featured()"
 >
-  <img [src]="image().url" [alt]="image().alt" class="w-full h-full object-cover block"/>
-  
+  <img [src]="image().url" [alt]="image().alt" class="w-full h-full object-cover block" />
+
   <button
     (click)="onClickTrash($event)"
-    class="absolute top-2 right-2 p-1 rounded-xl bg-red-600 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 cursor-pointer"
+    aria-label="Delete image from gallery"
+    class="absolute top-2 right-2 p-1 rounded-xl bg-red-700 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 cursor-pointer"
   >
-    <i class="pi pi-trash"></i>
+    <i class="pi pi-trash" aria-hidden="true"></i>
   </button>
 </div>

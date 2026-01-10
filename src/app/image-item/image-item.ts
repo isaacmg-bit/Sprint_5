@@ -1,11 +1,10 @@
 import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Image } from '../image';
-import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-image-item',
-  imports: [CommonModule, ButtonModule],
+  imports: [CommonModule],
   templateUrl: './image-item.html',
   styleUrl: './image-item.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

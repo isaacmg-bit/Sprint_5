@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Gallery } from './gallery';
 import { Image } from '../image';
-import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
+import {CdkDragDrop} from '@angular/cdk/drag-drop';
 
 describe('Gallery', () => {
   let component: Gallery;
@@ -64,7 +64,7 @@ describe('Gallery', () => {
     expect(imageItems.length).toBe(32);
   });
   it('should delete image from the array', async () => {
-    vi.spyOn(component, 'handleImages').mockImplementation(() => {});
+    vi.spyOn(component, 'handleImages').mockImplementation(() => {''});
 
     const mockImages: Image[] = [
       { id: 1, url: 'test1.jpg', featured: true, alt: 'Featured gallery image' },
@@ -86,7 +86,7 @@ describe('Gallery', () => {
     expect(component.images()[0].featured).toBe(true);
   });
   it('should NOT delete image from the array if we do not confirm', async () => {
-    vi.spyOn(component, 'handleImages').mockImplementation(() => {});
+    vi.spyOn(component, 'handleImages').mockImplementation(() => {''});
 
     const mockImages: Image[] = [
       { id: 1, url: 'test1.jpg', featured: true, alt: 'Featured gallery image' },
